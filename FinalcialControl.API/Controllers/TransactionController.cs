@@ -1,9 +1,11 @@
-﻿using FinancialControl.Models.Entities;
 using FinancialControl.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using FinancialControl.Models.Entities;
 
 
-namespace FinalcialControl.API.Controllers
+
+namespace FinancialControl.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -19,7 +21,7 @@ namespace FinalcialControl.API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]Transaction transaction)
         {
-            var transactionCreated = _transactionService;
+            var transactionCreated = _transactionService.Add(transaction);
             return Ok(transactionCreated);
         }
     }
