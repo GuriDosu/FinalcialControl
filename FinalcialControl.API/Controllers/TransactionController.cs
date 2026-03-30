@@ -1,5 +1,4 @@
-using FinancialControl.Services.Services.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using FinancialControl.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using FinancialControl.Models.Entities;
 
@@ -16,6 +15,12 @@ namespace FinancialControl.API.Controllers
         public TransactionController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
+        }
+        [HttpGet]
+        public IActionResult Gettransactions()
+        {
+            var transactions = _transactionService.GetTransactions();
+            return Ok(transactions);
         }
 
         [HttpPost]

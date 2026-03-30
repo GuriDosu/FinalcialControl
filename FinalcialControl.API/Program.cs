@@ -1,4 +1,7 @@
 
+using FinancialControl.Services.Services;
+using FinancialControl.Services.Services.Interfaces;
+
 namespace FinalcialControl.API
 {
     public class Program
@@ -13,7 +16,7 @@ namespace FinalcialControl.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddSingleton<ITransactionService, TransactionServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

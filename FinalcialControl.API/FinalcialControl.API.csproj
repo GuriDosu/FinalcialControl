@@ -2,17 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FinancialControl.Models\FinancialControl.Models.csproj" />
     <ProjectReference Include="..\FinancialControl.Services\FinancialControl.Services.csproj" />
+    <ProjectReference Include="..\FinancialControl.Models\FinancialControl.Models.csproj" />
   </ItemGroup>
 
 </Project>

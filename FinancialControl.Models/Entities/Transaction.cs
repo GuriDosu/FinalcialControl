@@ -1,4 +1,5 @@
 ﻿namespace FinancialControl.Models.Entities
+
 {
     public class Transaction
     {
