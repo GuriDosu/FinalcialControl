@@ -23,4 +23,8 @@
     <ProjectReference Include="..\FinancialControl.Services\FinancialControl.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Anotaçoes\" />
+  </ItemGroup>
+
 </Project>

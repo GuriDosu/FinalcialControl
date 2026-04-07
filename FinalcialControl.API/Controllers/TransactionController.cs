@@ -18,25 +18,47 @@ namespace FinancialControl.API.Controllers
             _transactionService = transactionService;
         }
         [HttpGet]
-        public IActionResult Gettransactions()
-        {
-            var transactions = _transactionService.GetTransactions();
-            return Ok(transactions);
-        }
-
-        [HttpPost]
-        public IActionResult Create([FromBody] CreateTransactionDTO transaction)
+        public IActionResult GetTransactions()
         {
             try
             {
-                var transactionCreated = _transactionService.Add(transaction);
-                return Ok(transactionCreated);
+                var transactions = _transactionService.GetTransactions();
+                return Ok(transactions);
             }
-            catch(ArgumentException ex)
+            catch (InvalidOperationException ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
+        }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                var transaction = _transactionService.GetById(id);
+                return Ok(transaction);
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+            [HttpPost]
+            public IActionResult Create([FromBody] CreateTransactionDTO transaction)
+            {
+                try
+                {
+                    var transactionCreated = _transactionService.Add(transaction);
+                    return Ok(transactionCreated);
+                }
+                catch (ArgumentException ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+            }
         }
     }
-}

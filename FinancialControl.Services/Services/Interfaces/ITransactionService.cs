@@ -8,5 +8,7 @@ namespace FinancialControl.Services.Services.Interfaces
     {
         Transaction Add(CreateTransactionDTO transaction);
         List<Transaction> GetTransactions();
+
+        Transaction GetById(int id);
     }
 }

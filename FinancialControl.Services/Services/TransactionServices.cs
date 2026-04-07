@@ -20,7 +20,31 @@ namespace FinancialControl.Services.Services
         }
         public List<Transaction> GetTransactions()
         {
+            if (!_transactions.Any())
+            {
+                throw new InvalidOperationException("Nenhuma transação registrada até o momento");
+            }
             return _transactions;
+        }
+        public Transaction GetTransactionById(int id)
+        {
+            Transaction transaction = _transactions.FirstOrDefault(x => x.Id == id);
+            if (transaction == null)
+
+            {
+                throw new InvalidOperationException("Nenhuma transação encontrada com o ID fornecido.");
+            }
+            return transaction;
+        }
+        public Transaction GetById(int id)
+        {
+            Transaction transaction = _transactions.FirstOrDefault(x => x.Id == id);
+            if (transaction == null)
+            {
+                throw new InvalidOperationException("Nenhuma transação encontrada com o ID fornecido.");
+            }
+            return transaction;
         }
     }
 }
+
