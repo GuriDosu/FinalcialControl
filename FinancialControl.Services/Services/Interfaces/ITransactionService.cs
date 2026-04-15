@@ -10,5 +10,7 @@ namespace FinancialControl.Services.Services.Interfaces
         List<Transaction> GetTransactions();
 
         Transaction GetById(int id);
+        List<Transaction> GetTransactionByType(string type);
+         
     }
 }

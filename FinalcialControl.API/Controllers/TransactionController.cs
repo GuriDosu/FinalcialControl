@@ -46,7 +46,21 @@ namespace FinancialControl.API.Controllers
             }
         }
 
-            [HttpPost]
+        [HttpGet("type/{type}")]
+        public IActionResult GetByType(string type)
+        {
+            try
+            {
+                var transactions = _transactionService.GetTransactionByType(type);
+                return Ok(transactions);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPost]
             public IActionResult Create([FromBody] CreateTransactionDTO transaction)
             {
                 try
