@@ -48,14 +48,46 @@ namespace FinancialControl.Services.Services
         public List<Transaction> GetTransactionByType(string type)
         {
             var transactions = _transactions.Where(x => x.Type.Equals(type)).ToList();
-            
+
             if (!transactions.Any())
             {
                 throw new InvalidOperationException($"Nenhuma transação encontrada com o tipo {type}, nao foi encontrado.");
             }
-          return transactions;
+            return transactions;
         }
-                
+        public TransactionsBalance GetBalance()
+        {
+            double total = _transactions.Sum(x => x.Amount);
+
+            if (total == 0)
+            {
+                throw new InvalidOperationException("Nenhuma transação registrada até o momento");
+            }
+
+            TransactionsBalance balance = new()
+            {
+                Balance = total
+            };
+
+            return balance;
+        }
+
+        public TransactionsBalance GetBalanceByType(string type)
+        {
+            Double totalBalance = _transactions.Where(x => x.Type.Equals(type)).Sum(x => x.Amount);
+
+            if (totalBalance == 0)
+            {
+                throw new InvalidOperationException($"Nenhuma transação registrada até o momento para o tipo {type}");
+            }
+
+            TransactionsBalance balance = new()
+            {
+                Balance = totalBalance
+            };
+
+            return balance;
+        }
     }
 }
 

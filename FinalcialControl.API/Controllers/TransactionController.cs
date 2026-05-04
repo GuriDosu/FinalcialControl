@@ -59,6 +59,33 @@ namespace FinancialControl.API.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpGet("/balance")]
+        public IActionResult GetBalance()
+        {
+            try
+            {
+                var balance = _transactionService.GetBalance();
+                return Ok(balance);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpGet("balance/type/{type}")]
+        public IActionResult GetBalanceByType(string type)
+        {
+            try
+            {
+                var balance = _transactionService.GetBalanceByType(type);
+                return Ok(balance);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
 
         [HttpPost]
             public IActionResult Create([FromBody] CreateTransactionDTO transaction)
